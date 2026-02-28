@@ -1,4 +1,4 @@
-package com.rodriguez_rodrigo.producer.interfaces.rest.v1;
+package com.rodriguez_rodrigo.producer.interfaces.rest.v1.controllers;
 
 import com.rodriguez_rodrigo.producer.sale.MakeSale;
 import com.rodriguez_rodrigo.producer.sale.application.GetSales;
