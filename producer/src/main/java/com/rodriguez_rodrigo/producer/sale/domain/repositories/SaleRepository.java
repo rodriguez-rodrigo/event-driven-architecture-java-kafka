@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface SaleRepository {
     List<Sale> findAll();
+    void save(Sale sale);
 }
