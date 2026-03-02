@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class SaleRepositoryImpl implements SaleRepository
+public class JpaSaleRepository implements SaleRepository
 {
     private final SpringDataSaleRepository repository;
 
-    public SaleRepositoryImpl(SpringDataSaleRepository repository) {
+    public JpaSaleRepository(SpringDataSaleRepository repository) {
         this.repository = repository;
     }
 

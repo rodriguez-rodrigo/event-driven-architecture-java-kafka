@@ -1,6 +1,6 @@
 package com.rodriguez_rodrigo.producer.interfaces.rest.v1.controllers;
 
-import com.rodriguez_rodrigo.producer.sale.MakeSale;
+import com.rodriguez_rodrigo.producer.sale.application.MakeSale;
 import com.rodriguez_rodrigo.producer.sale.application.GetSales;
 import com.rodriguez_rodrigo.producer.sale.application.dto.SaleDto;
 import com.rodriguez_rodrigo.producer.sale.application.requests.MakeSaleRequest;
