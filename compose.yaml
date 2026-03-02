@@ -1,4 +1,33 @@
 services:
+
+  producer-database:
+    image: 'postgres:18-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      PGPASSWORD: 'password'
+      POSTGRES_DB: 'java'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+    command: >
+      postgres
+      -c wal_level=logical
+      -c max_wal_senders=10
+      -c max_replication_slots=10
+    volumes:
+      - 'producer-pgsql:/var/lib/postgresql'
+    networks:
+      - java
+
+  adminer:
+    image: 'adminer:latest'
+    ports:
+      - '8090:8080'
+    environment:
+      ADMINER_DEFAULT_SERVER: pgsql
+    networks:
+      - java
+
   kafka-ui:
     image: provectuslabs/kafka-ui   # UI web
     ports:
@@ -26,6 +55,27 @@ services:
       KAFKA_NUM_PARTITIONS: 3
     networks:
       - java
+
+  connect:
+    image: debezium/connect:2.7.3.Final
+    ports:
+      - "8083:8083"
+    environment:
+      BOOTSTRAP_SERVERS: broker:9092
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: connect_configs
+      OFFSET_STORAGE_TOPIC: connect_offsets
+      STATUS_STORAGE_TOPIC: connect_statuses
+      KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+    networks:
+      - java
+
+volumes:
+  producer-pgsql:
+    driver: local
 
 networks:
   java:
