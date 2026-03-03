@@ -7,6 +7,7 @@
 - Kafka
 - Kafka UI for inspecting Kafka
 - Debezium connector for capturing changes in the producer database
+3. Create Debezium connector by running `./create-connector.sh` in the terminal. This will create a Debezium connector that captures changes in the producer database and sends them to Kafka.
 3. Run the Producer application with `./gradlew bootRun` or by running the `ProducerApplication` class in your IDE.
 
 After everything is up and running, is time to test the application. 
